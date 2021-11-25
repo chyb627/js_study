@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- <h3 id="hello">안녕하세요</h3> -->
+    <!-- <h2 id="hi">메로나</h2> -->
+    <button onclick="document.getElementById('box').style.display ='block'">열기</button>
+    <button onclick="알림창닫기()">닫기</button>
+    <div class="box" id="box">
+    </div>
+
+    <div class="box" id="alert">
+     <button onclick="안내창열기('none')">안내창 열기</button>
+    </div>
+
+    <script>
+        // document.getElementById('hello').innerHTML = '바보';
+        // document.getElementById('hello').innerHTML = '멍청이😛';
+        document.getElementById('hello').style.color = 'red';
+        document.getElementById('hi').innerHTML = '바밤바';
+        document.getElementById('hi').style.fontSize = '30px';
+
+        function 알림창닫기(){
+            document.getElementById('box').style.display ='none'
+        }
+        // function은 긴 코드를 한단어로 축약하고 싶을 때 사용한다. (1번째 용도)
+        // 
+
+        function 안내창열기(파라미터){
+            document.getElementById('alert').style.display =파라미터;
+        }
+    </script>
+</body>
+</html>
