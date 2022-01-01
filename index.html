@@ -1,38 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="main.css">
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous">
+    </script>
 </head>
+
 <body>
     <!-- <h3 id="hello">안녕하세요</h3> -->
     <!-- <h2 id="hi">메로나</h2> -->
-    <button onclick="document.getElementById('box').style.display ='block'">열기</button>
-    <button onclick="알림창닫기()">닫기</button>
-    <div class="box" id="box">
+    <!-- <button onclick="document.getElementById('box').style.display ='block'">열기</button> -->
+    <!-- <button onclick="알림창열기()">열기</button>
+    <button onclick="알림창닫기()">닫기</button> -->
+    
+    <!-- <div class="box" id="alert">
+        <button onclick="안내창('block')">안내창 열기</button>
     </div>
 
-    <div class="box" id="alert">
-     <button onclick="안내창열기('none')">안내창 열기</button>
-    </div>
+    <div class="box" id="guide">
+     <button onclick="안내창('none')">안내창 닫기</button>
+    </div> -->
+
+    <h4 id="greeting">안녕하세요</h4>
+    <h4 id="greeting">안녕하세요</h4>
+    <h4 id="greeting">안녕하세요</h4>
 
     <script>
+
+        $('#greeting').html('안녕');
+
         // document.getElementById('hello').innerHTML = '바보';
         // document.getElementById('hello').innerHTML = '멍청이😛';
         document.getElementById('hello').style.color = 'red';
         document.getElementById('hi').innerHTML = '바밤바';
         document.getElementById('hi').style.fontSize = '30px';
 
-        function 알림창닫기(){
-            document.getElementById('box').style.display ='none'
-        }
-        // function은 긴 코드를 한단어로 축약하고 싶을 때 사용한다. (1번째 용도)
-        // 
+        function 알럴트닫기(){
+        document.getElementById('close').addEventListener('click', function(){
+            document.getElementById('alert').style.display = 'none'
+            console.log("close")
+        });}
 
-        function 안내창열기(파라미터){
-            document.getElementById('alert').style.display =파라미터;
+
+        function 알림창열기(파라미터){
+            document.getElementById('title').innerHTML = 파라미터;
+            document.getElementById('alert').style.display ='block'
+        }
+
+        function 알림창닫기(){
+            document.getElementById('alert').style.display ='none'
+        }
+
+        function 안내창(파라미터){
+            document.getElementById('guide').style.display =파라미터;
         }
     </script>
+
 </body>
 </html>
