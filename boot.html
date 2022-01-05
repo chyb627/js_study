@@ -74,6 +74,30 @@
         </a>
     </div>
 
+    <h4 class="my-4 text-center">Showcase</h4>
+
+    <div style="overflow: hidden; position: relative">
+        <div class="slide-container">
+          <div class="slide-box">
+            <img src="img/shirt1.jpeg">
+          </div>
+          <div class="slide-box">
+            <img src="img/shirt2.jpeg">
+          </div>
+          <div class="slide-box">
+            <img src="img/shirt3.jpeg">
+          </div>
+        </div>
+        <button class="slide-right">Right</button>
+        <button class="slide-left">left</button>
+    </div>
+          
+      <button class="slide-1">1</button>
+      <button class="slide-2">2</button>
+      <button class="slide-3">3</button>
+
+      <div class="my-5"></div>
+
     <script> 
 
         $('#show-menu').click(function(){
@@ -134,6 +158,36 @@
 
         $('#close').on('click', function(){
             $('.black-background').fadeOut();
+        });
+
+        $('.slide-1').click(function(){
+            $('.slide-container').css('transform','translateX(0vw)');
+        });
+        $('.slide-2').click(function(){
+            $('.slide-container').css('transform','translateX(-100vw)');
+        });
+        $('.slide-3').click(function(){
+            $('.slide-container').css('transform','translateX(-200vw)');
+        });
+
+        var 지금보이는사진 =1;
+       
+        $('.slide-right').click(function() {
+
+            if ( 지금보이는사진 < 3 ) { 
+                $('.slide-container').css('transform', 'translateX(-' + 지금보이는사진 + '00vw)');
+                지금보이는사진 = 지금보이는사진 + 1;
+            }
+
+        });
+
+        $('.slide-left').click(function() {
+        
+            if ( 지금보이는사진 > 1 ) { 
+                $('.slide-container').css('transform', 'translateX(-' + (지금보이는사진 - 2) + '00vw)');
+                지금보이는사진 = 지금보이는사진 - 1;
+            }
+
         });
 
     </script>

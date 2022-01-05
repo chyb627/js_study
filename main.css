@@ -7,7 +7,7 @@
   }
 
   .main-background {
-      background-image: url(main.jpeg);
+      background-image: url("img/main.jpeg");
       background-size: cover;
       color: white;
       border-radius: 0px;
@@ -63,4 +63,29 @@
 
   .slide-down {
     transform: translateY(0px);
+  }
+
+  .slide-box {
+    width: 100vw;
+    float: left;
+  }
+  .slide-container {
+    width: 300vw;
+    transition : transform 1s;
+    /* transform : translateX(-100vw); */
+  }
+  .slide-box img {
+    width: 100%;
+  }
+
+  .slide-right {
+    position: absolute;
+    top: 45%;
+    right: 0;
+  }
+
+  .slide-left {
+    position: absolute;
+    top: 45%;
+    left: 0;
   }
