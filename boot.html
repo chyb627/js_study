@@ -100,9 +100,9 @@
     <div class="container">
 
         <ul class="list">
-            <li class="tab-button">Products</li>
-            <li class="tab-button active">Information</li>
-            <li class="tab-button">Shipping</li>
+            <li class="tab-button" data-id="0">Products</li>
+            <li class="tab-button active" data-id="1">Information</li>
+            <li class="tab-button" data-id="2">Shipping</li>
         </ul>
     
         <div class="tab-content">
@@ -216,16 +216,40 @@
 
         });
 
-        for (let i = 0; i < $('.tab-button').length; i++) {
-            $('.tab-button').eq(i).click(function(){
-                // console.log(i);
-                $('.tab-button').removeClass('active'); 
-                $('.tab-content').removeClass('show');    
+        // 반복문으로 탭열기
+        // for (let i = 0; i < $('.tab-button').length; i++) {
+        //     $('.tab-button').eq(i).click(function(){
+        //         // console.log(i);
+        //         탭열기(i);
+        //     }); 
+        // }
 
-                $('.tab-button').eq(i).addClass('active');
-                $('.tab-content').eq(i).addClass('show');
-            }); 
+        //ul.list로 탭열기
+        $('.list').click(function(e){
+                탭열기(e.target.dataset.id);
+        });
+
+        
+
+        function 탭열기(숫자) {
+            $('.tab-button').removeClass('active'); 
+            $('.tab-content').removeClass('show');    
+
+            $('.tab-button').eq(숫자).addClass('active');
+            $('.tab-content').eq(숫자).addClass('show');
         }
+
+        $('.black-background').click(function(e){
+
+            // e.target;  // 지금 실제로 클릭한 요소
+            // e.currentTarget;  // 지금 이벤트리스너가 달린 곳
+            // e.preventDefault(); // 기본동작 막기
+
+            //만약에, 지금 실제로 클릭한게 검은배경일 때만 작동하도록하기.
+            if (e.target === e.currentTarget ){
+                $('.black-background').hide();
+            }
+        });
 
     </script>
 
