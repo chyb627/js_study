@@ -17,7 +17,7 @@
         crossorigin="anonymous">
     </script>
 
-    <title>Clothes Store</title>
+    <title>Sweater Store</title>
   </head>
 
 
@@ -116,6 +116,60 @@
         </div>
 
     </div>
+
+    <form class="container my-5">
+        <div class="form-group">
+         
+          <p>상품선택</p>
+          <select class="form-control" id="option1">
+            <option>바지</option>
+            <option>셔츠</option>
+          </select>
+          
+          <div class="size-select">
+            <p class="mt-4">사이즈선택</p>
+            <select class="form-control" id="option2">
+              <!-- <option>95</option>
+              <option>100</option>
+              <option>105</option> -->
+            </select>
+          </div>
+    
+        </div>
+    </form> 
+
+    <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-4">
+        <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
+        <button class="btn btn-primary" id="abc">가나다순</button>
+        <button class="btn btn-primary" id="filter">6만원이하</button>
+      </div>
 
     <div class="my-5"></div>
 
@@ -249,6 +303,102 @@
             if (e.target === e.currentTarget ){
                 $('.black-background').hide();
             }
+        });
+
+
+        let 셔츠사이즈 = [85,90,95,100,105,110,115];
+        // select 값을 바꾸면 내부 코드를 실행해주세요
+        // 만약에 사용자가 선택한 값이 셔츠인 경우에 밑에 그 UI를 보여준다.
+        $('#option1').on('change', function(){
+            // if ( $('#option1').val() == '셔츠' ) {
+            //     $('.size-select').show();
+            // }
+            // else {
+            //     $('.size-select').hide();
+            // }
+
+            if ( $('#option1').val() == '셔츠' ) {
+                $('#option2').html('');
+                for (let i =0; i < 셔츠사이즈.length; i++) {
+                    let 템플릿 = `<option>${셔츠사이즈[i]}</option>`;
+                    $('#option2').append(템플릿);
+                }
+            }
+            else {
+                $('#option2').html('');
+                var 템플릿 = '<option>28</option><option>30</option><option>32</option>';
+                $('#option2').append(템플릿);
+            }
+        });
+
+        // array of objects 다루기
+        let products = [
+            { id : 0, price : 70000, title : 'Blossom Dress' },
+            { id : 1, price : 50000, title : 'Springfield Shirt' },
+            { id : 2, price : 60000, title : 'Black Monastery' }
+        ] 
+        for(let i =0; i < products.length; i++){
+            $('.title').eq(i).html(products[i].title);
+            $('.price').eq(i).html('가격 : '+products[i].price);
+        }
+
+        // 상품정렬 기능 만들기 (sort, filter, map)
+        let array = [7,3,5,2,40];
+        
+        array.sort(function(a,b){
+            return a - b; //오름차순
+            // return b - a; //내림차순
+        });
+
+        $('#sortPrice').click(function(){
+            products.sort(function(a,b){
+                return a.price - b.price;
+            })
+
+            for(let i =0; i < products.length; i++){
+            $('.title').eq(i).html(products[i].title);
+            $('.price').eq(i).html('가격 : '+products[i].price);
+            }
+        });
+
+        let newArray = array.filter(function(a){   // 신문법은 new에 담아서 사용해야함.
+            return a < 4; // 조건식. a<4를 쓰면 4보다 작은것만 걸러진다.
+        })
+
+        // filter()함수는 기존 array자료를 변형 시키지 않는다
+        // sort()함수는 기존 array 자료를 변형 시킨다
+
+        // let newArray = array.map(function(a){
+        //     return a * 2 // array자료에 전부 뭐 해주고 싶으면 map()함수 사용. array자료에 전부 2를 곱해준다.
+        // })
+
+        // 가나다순으로 정렬하는 코드
+        $('#abc').click(function(){
+            products.sort(function(a,b){
+                if(a.title < b.title === true) {
+                    return -1;  // 음수를 리턴하면 b.title을 오른쪽으로 보낸다.
+                }
+                else {
+                    return 1;  // 양수를 리턴하면 b.title이 왼쪽으로 온다.
+                }
+            });
+
+            for(let i =0; i < products.length; i++){
+            $('.title').eq(i).html(products[i].title);
+            $('.price').eq(i).html('가격 : '+products[i].price);
+            }
+        });
+
+        // 6만원이하 필터 기능
+        $('#filter').click(function(){
+            let newProducts = products.filter(function(a){
+                return a.price <= 60000
+            });
+
+            newProducts.forEach(function(a){
+                let template = `<div>${a.title} ${a.price}</div>`;
+                $('.card-group').append(template);
+            });
         });
 
     </script>
