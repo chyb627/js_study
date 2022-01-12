@@ -105,6 +105,9 @@
   }
 
   .large-logo {
+    padding: 3%;
+    background: black;
+    color: white;
     font-size: 30px;
     transition: all 0.5s;
   }
@@ -153,4 +156,13 @@
 
   .show {
   display: block;
+  }
+
+  .size-select {
+    /* display: none; */
+    display: block;
+  }
+
+  .left-margin {
+    margin-left: 70%
   }

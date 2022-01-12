@@ -17,7 +17,7 @@
         crossorigin="anonymous">
     </script>
 
-    <title>Sweater Store</title>
+    <title>Sweater Store 👕</title>
   </head>
 
 
@@ -27,6 +27,7 @@
         <p>Menu Title</p>
     </div>
 
+    <!-- 로그인 모달창 -->
     <div class="black-background">
         <div calss="white-background">
             <p>로그인하세요</p>
@@ -48,13 +49,15 @@
         </div>
     </div>
 
-    <!-- ------------------------------------------------------------------->
-    <!-------------------------------- 네브바 -------------------------------->
-    <!-- ------------------------------------------------------------------->
-
+    <!-- 네브바 -->
     <div class="nav-menu">
-        <h4 style="margin:0" class="large-logo">Shirts Studio</h4>
-        <a id="nav-sub-button">Products</a>
+        <h4 class="large-logo">Sweater Store 👕</h4>
+        <div class="left-margin">
+            <a style id="nav-sub-button">MENU</a>
+            <a style="margin-left: 50px;" id="login" class="btn btn-primary btn-lg" role="button">
+                Log In
+            </a>
+        </div>
     </div>
 
     <ul class="list-group nav-sub">
@@ -65,19 +68,6 @@
         <li class="list-group-item">etc</li>
     </ul>
     
-    <div class="jumbotron main-background">
-        <h1 class="display-4">Shirts Studio</h1>
-        <p class="lead">This is a simple  hero unit</p>
-        <hr class="my-4">
-        <p>It uses utility</p>
-        <a id="login" class="btn btn-primary btn-lg" role="button">
-            Log In
-        </a>
-        <a id="show-menu" class="btn btn-danger btn-lg" role="button">
-            Show Menu
-        </a>
-    </div>
-
     <h4 class="my-4 text-center">Showcase</h4>
 
     <div style="overflow: hidden; position: relative">
@@ -171,13 +161,21 @@
         <button class="btn btn-primary" id="filter">6만원이하</button>
       </div>
 
+      <h4 id="hhello" style="margin: 40px;">AJAX 연습</h4>
+      <button id="ajax" style="margin-left: 40px;" class="btn btn-danger">AJAX 버튼</button>
+
+      <div>
+        <h4 id="car" style="margin-top: 40px;">르노</h4>
+        <p id="kind">CLIO</p>
+        <p id="money">20000</p>
+        <img id="picture" style="width: 400px; height: 300px;" src="img/clio.jpeg">
+      </div>
+
+      <button id="change" style="margin-left: 40px;" class="btn btn-danger">상품변경 버튼</button>
+
     <div class="my-5"></div>
 
     <script> 
-
-        $('#show-menu').click(function(){
-            $('.left-menu').animate({ marginLeft:'0px' });
-        })
 
         $('#hi').click(function(){
             $('#hi').animate({ marginLeft:'100px', marginTop:'100px' });
@@ -398,6 +396,36 @@
             newProducts.forEach(function(a){
                 let template = `<div>${a.title} ${a.price}</div>`;
                 $('.card-group').append(template);
+            });
+        });
+
+        // AJAX
+        $('#ajax').click(function(){
+            $.ajax({ 
+                url : 'https://codingapple1.github.io/hello.txt',
+                type : 'GET'
+            }).done(function(데이터){
+                // console.log(데이터);
+                $('#hhello').html(데이터);
+            });
+            // .fail(function(){      //ajax 요청이 실패했을 때 실행할 코드
+
+            // }).always(function(){     //ajax 요청시 항상 실행할 코드
+
+            // })
+        });
+
+        // AJAX 이용해서 상품 변경하기
+        $('#change').click(function(){
+            $.ajax({ 
+                url : 'https://codingapple1.github.io/data.json',
+                type : 'GET'
+            }).done(function(데이터){
+                // console.log(데이터);
+                $('#car').html(데이터.brand);
+                $('#kind').html(데이터.model);
+                $('#money').html(데이터.price);
+                $('#picture').attr('src', 데이터.img);
             });
         });
 
