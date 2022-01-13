@@ -7,12 +7,25 @@ const app = express();
 const bodyParser= require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 
+// MongoDB
+const MongoClient = require('mongodb').MongoClient;
+
+// MongoDB
+MongoClient.connect('mongodb+srv://chyb627:!cha159632@chabiri.r7lh7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(에러, client){
+    if (에러) return console.log(에러);
+    //서버띄우는 코드 여기로 옮기기
+    app.listen('8080', function(){
+      console.log('listening on 8080')
+    });
+  })
+
+
 // app.listen()은 원하는 포트에 서버를 오픈하는 문법
 // listen() 함수 안엔 두개의 파라미터가 필요
 // listen(서버를 오픈할 포트번호, function(){서버 오픈시 실행할 코드})
-app.listen(8080, function() {
-    console.log('listening on 8080')
-})
+// app.listen(8080, function() {
+//     console.log('listening on 8080')
+// })
 
 // /경로로 접속시 server.js랑 같은 경로에 있는 /main.html 이라는 파일을 보내준다.
 // sendFile() 함수를 쓰면 파일을 보낼 수 있다.
