@@ -78,11 +78,28 @@ app.get('/list', function(요청, 응답){
     });
 });
 
+// app.delete('/delete', function (요청, 응답) {
+//     //parseInt라는 함수는 '1'이라는 문자를 정수 1로 바꿔주는 고마운 함수이다.
+//     // list 페이지를 새로고침해서 AJAX 요청해보면 데이터가 삭제된다.
+//     요청.body._id = parseInt(요청.body._id);
+//     // 요청.body에 담겨온 게시물번호를 가진 글을 db에서 찾아서 "이승기-삭제"
+//     // deleteOne 함수를 쓰면 원하는 데이터를 삭제 가능하다
+//     // deleteOne(삭제원하는 데이터이름, function(){}) 이렇게 쓰면 된다.
+//     // 그리고 AJAX 요청시 삭제원하는 데이터이름은 요청.body라는 곳에 담겨온다.
+//     // 그래서 그 정보를 deleteOne에 집어넣으면 삭제원하는 데이터 게시물을 삭제할 수 있다.
+//     // { _id : 요청.body._id }인 경우 글번호만 확인하고 삭제.
+//     // { 작성자 : 지금로그인한사용자의_id } 이것도 가지고 있으면 삭제하라고 업글. 이제 사용자1,2가 발행한 게시물 삭제가 불가능하다.
+//     db.collection('post').deleteOne({ _id: 요청.body._id, 작성자: 요청.user._id }, function (에러, 결과) {
+//       console.log('삭제완료');
+//       console.log('에러', 에러)
+//       응답.status(200).send({ message: '성공했습니다' });
+//     })
+//   });
+  
 app.delete('/delete', function(요청, 응답){
     요청.body._id = parseInt(요청.body._id)
     db.collection('post').deleteOne(요청.body, function(에러, 결과){
       console.log('삭제완료')
     })
     응답.send('삭제완료')
-});
-  
+  });
