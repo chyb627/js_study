@@ -22,4 +22,6 @@
 - package.json은 뭐냐 : 뭔 라이브러리를 썼는지 기록해두면 좋겠죠? 여러분이 설치한 라이브러리 목록을 자동으로 기록해주는 파일입니다.
 
 
-4. npm install express
+4. npm install express --> node_modules 설치, package-lock.json 설치
+
+- express가 뭐냐 : 서버를 매우 쉽게 짤 수 있게 도와주는 라이브러리입니다. 덕분에 코드 두줄 쓰면 서버 생성 끝임
