@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 
+// bodyParser 라이브러리 
+// 데이터들 처리가 쉽게 가능하게 한다
 const bodyParser= require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 
