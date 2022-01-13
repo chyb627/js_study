@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 // MongoDB
 const MongoClient = require('mongodb').MongoClient;
 
+//ejs
+app.set('view engine', 'ejs');
 
 let db; //페이지 전체에서 쓸 수 있는 전역변수
 
