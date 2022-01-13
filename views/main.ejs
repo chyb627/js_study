@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<body>
+  <!-- nav.html을 첨부해줘 ejs파일에서만가능 아니면 jquery써야함-->
+  <%- include('nav.html') %>
+
+    <section class="index-form">
+      <h1>9월 12일 🙂 Together 🙂</h1>
+      <h2> Our record 😎</h2>
+      <div class="btn-area">
+        <!-- <button type="submit" onclick = "location.href = 'signup'">시작하기</button> -->
+      </div><br>
+    </section>
+
+      <div style="overflow: hidden;">
+        <div class="img-container">
+          <div class="img-area" >
+          <img src="/public/image/jyb.jpg"style="width:500px; height: 600px;" >
+          </div>
+          <div class="img-area">
+            <img src="/public/image/main2.jpg" >
+          </div>
+          <div class="img-area">
+            <img src="/public/image/main3.png" >
+          </div>
+      </div>
+    </div>
+
+    <div class="img-button" style="padding-top: 10px;">
+    <button class="img-button1"> 👍🏻 </button>
+    <button class="img-button2"> ✌🏻 </button>
+    <button class="img-button3"> 👌🏻 </button>
+    </div> 
+    
+    <script>
+      document.querySelector('.img-button1').addEventListener('click', function(){
+        document.querySelector('.img-container').style.transform = 'translate(0vw)';
+      });
+
+      document.querySelector('.img-button2').addEventListener('click', function(){
+        document.querySelector('.img-container').style.transform = 'translate(-100vw)';
+      });
+
+      document.querySelector('.img-button3').addEventListener('click', function(){
+        document.querySelector('.img-container').style.transform = 'translate(-200vw)';
+      });
+    </script>
+    <script src="/public/main.js" defer></script>
+</body>
+
+</html>
