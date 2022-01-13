@@ -13,6 +13,12 @@ const MongoClient = require('mongodb').MongoClient;
 //ejs
 app.set('view engine', 'ejs');
 
+// public 위치에 있는 폴더를 사용하겠다.
+app.use('/public', express.static('public'))
+
+
+
+
 let db; //페이지 전체에서 쓸 수 있는 전역변수
 
 // MongoDB + 서버띄우는 코드

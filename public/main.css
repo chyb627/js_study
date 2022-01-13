@@ -212,3 +212,192 @@ a{
 .img-button {
     text-align: center;
 }
+
+.box {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+  }
+
+  .main-background {
+      background-image: url("img/main.jpeg");
+      background-size: cover;
+      color: white;
+      border-radius: 0px;
+  }
+
+  .black-background {
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    /* 모든 CSS 속성이 변경될 때 1초에 걸쳐서 서서히 변경됨 */
+    transition: all 1s;
+    transform: translateY(-1000px);
+  }
+
+  .white-background {
+    background: white;
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  //////////
+  ///네브바///
+  //////////
+  .nav-menu {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      align-items: center;
+      background-color: transparent;
+      position: fixed; // 스크롤 되어도 화면 고정
+      z-index: 5; // 뒤로, 앞으로 보내기 기능
+      width: 100%;
+      color: white;
+  }
+  
+  .nav-black {
+    background: white;
+    color: black;
+  }
+
+  .nav-sub {
+      display: none;
+  }
+
+  #email-alert {
+      display: none;
+  }
+
+  #password-alert {
+    display: none;
+  }
+
+  .left-menu {
+      width: 150px;
+      height: 100%;
+      background: black;
+      color: white;
+      position: fixed;
+      margin-left: -150px;
+  }
+
+  .slide-down {
+    transform: translateY(0px);
+  }
+
+  .slide-box {
+    width: 100vw;
+    float: left;
+  }
+  .slide-container {
+    width: 300vw;
+    transition : transform 1s;
+    /* transform : translateX(-100vw); */
+  }
+  .slide-box img {
+    width: 100%;
+  }
+
+  .slide-right {
+    position: absolute;
+    top: 45%;
+    right: 0;
+  }
+
+  .slide-left {
+    position: absolute;
+    top: 45%;
+    left: 0;
+  }
+
+  .large-logo {
+    padding: 3%;
+    background: black;
+    color: white;
+    font-size: 30px;
+    transition: all 0.5s;
+  }
+
+  .small-logo {
+    font-size: 22px;
+  }
+
+  ul.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    }
+
+  ul.list::after {
+  content: '';
+  display: block;
+  clear: both;
+  }
+
+  .tab-button {
+  display: block;
+  padding: 10px 20px 10px 20px;
+  float: left;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+  }
+
+  .active {
+  border-top: 2px solid orange;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid white;
+  border-left: 1px solid #ccc;
+  color: black;
+  margin-top: -2px;
+  }
+
+  .tab-content {
+  display: none;
+  padding: 10px;
+  }
+
+  .show {
+  display: block;
+  }
+
+  .size-select {
+    /* display: none; */
+    display: block;
+  }
+
+  .flex-between {
+    /* margin-left: 70%; */
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .grey {
+    background: lightgrey;
+    height: 2000px;
+    margin-top: 500px;
+  }
+
+  .image {
+    float: right;
+    width: 400px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .text {
+    float: left;
+    width: 300px;
+  }

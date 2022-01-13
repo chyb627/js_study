@@ -5,48 +5,139 @@
   <!-- nav.html을 첨부해줘 ejs파일에서만가능 아니면 jquery써야함-->
   <%- include('nav.html') %>
 
-    <section class="index-form">
-      <h1>9월 12일 🙂 Together 🙂</h1>
-      <h2> Our record 😎</h2>
-      <div class="btn-area">
-        <!-- <button type="submit" onclick = "location.href = 'signup'">시작하기</button> -->
-      </div><br>
-    </section>
+  <body>
 
-      <div style="overflow: hidden;">
-        <div class="img-container">
-          <div class="img-area" >
-          <img src="/public/image/jyb.jpg"style="width:500px; height: 600px;" >
-          </div>
-          <div class="img-area">
-            <img src="/public/image/main2.jpg" >
-          </div>
-          <div class="img-area">
-            <img src="/public/image/main3.png" >
-          </div>
-      </div>
+    <!-- 로그인 모달창 -->
+    <div class="black-background">
+        <div calss="white-background">
+            <p>로그인하세요</p>
+
+            <form>
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Email" id="email">
+                  <p id="email-alert">이메일이 빈칸입니다</p>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Password" id="password">
+                  <p id="password-alert">이메일이 빈칸입니다</p>
+                </div>
+                <button type="submit" class="btn btn-primary">전송</button>
+              </form>
+
+            <a id="close" class="btn btn-danger">닫기</a>
+
+        </div>
     </div>
 
-    <div class="img-button" style="padding-top: 10px;">
-    <button class="img-button1"> 👍🏻 </button>
-    <button class="img-button2"> ✌🏻 </button>
-    <button class="img-button3"> 👌🏻 </button>
-    </div> 
+    <h4 class="my-4 text-center">Showcase</h4>
+
+    <div style="overflow: hidden; position: relative">
+        <div class="slide-container">
+          <div class="slide-box">
+            <img src="public/image/shirt1.jpeg">
+          </div>
+          <div class="slide-box">
+            <img src="public/image/shirt2.jpeg">
+          </div>
+          <div class="slide-box">
+            <img src="public/image/shirt3.jpeg">
+          </div>
+        </div>
+        <button class="slide-right">Right</button>
+        <button class="slide-left">left</button>
+    </div>
+
+      
+    <div class="container">
+
+        <ul class="list">
+            <li class="tab-button" data-id="0">상품 상세설명</li>
+            <li class="tab-button active" data-id="1">사이즈 정보</li>
+            <li class="tab-button" data-id="2">후기</li>
+        </ul>
     
-    <script>
-      document.querySelector('.img-button1').addEventListener('click', function(){
-        document.querySelector('.img-container').style.transform = 'translate(0vw)';
-      });
+        <div class="tab-content">
+            <p>상품 상세설명입니다. Product</p>
+        </div>
+        <div class="tab-content show">
+            <p>사이즈 정보입니다. Info</p>
+        </div>
+        <div class="tab-content">
+            <p>후기입니다. Shipping</p>
+        </div>
 
-      document.querySelector('.img-button2').addEventListener('click', function(){
-        document.querySelector('.img-container').style.transform = 'translate(-100vw)';
-      });
+    </div>
 
-      document.querySelector('.img-button3').addEventListener('click', function(){
-        document.querySelector('.img-container').style.transform = 'translate(-200vw)';
-      });
-    </script>
+    <form class="container my-5">
+        <div class="form-group">
+         
+          <p>상품선택</p>
+          <select class="form-control" id="option1">
+            <option>바지</option>
+            <option>셔츠</option>
+          </select>
+          
+          <div class="size-select">
+            <p class="mt-4">사이즈선택</p>
+            <select class="form-control" id="option2">
+              <!-- <option>95</option>
+              <option>100</option>
+              <option>105</option> -->
+            </select>
+          </div>
+    
+        </div>
+    </form> 
+
+    <div class="card-group container">
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5 class="title">Card title</h5>
+            <p class="price">가격 : 70000</p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container my-4">
+        <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
+        <button class="btn btn-primary" id="abc">가나다순</button>
+        <button class="btn btn-primary" id="filter">6만원이하</button>
+      </div>
+
+      <!-- <h4 id="hhello" style="margin: 40px;">AJAX 연습</h4>
+      <button id="ajax" style="margin-left: 40px;" class="btn btn-danger">AJAX 버튼</button>
+
+      <div>
+        <h4 id="car" style="margin-top: 40px;">르노</h4>
+        <p id="kind">CLIO</p>
+        <p id="money">20000</p>
+        <img id="picture" style="width: 400px; height: 300px;" src="public/image/clio.jpeg">
+      </div>
+
+      <button id="change" style="margin-left: 40px;" class="btn btn-danger">상품변경 버튼</button> -->
+
+    <div class="my-5"></div>
+
     <script src="/public/main.js" defer></script>
-</body>
+
+  </body>
 
 </html>

@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
+
 <body>
-  
-  (여긴 다른 페이지에 있던 <nav></nav> 태그 전부)
 
-  <h4 class="container mt-4"><strong>글 작성페이지</strong></h4>
+  <!-- nav.html을 첨부해줘 ejs파일에서만가능 아니면 jquery써야함-->
+  <%- include('nav.html') %>
 
-  <div class="container mt-3">
-    <form action="/add" method="POST">
-      <div class="form-group">
-        <label>오늘의 할일</label>
-        <input type="text" class="form-control" name="title">
+    <!-- (여긴 다른 페이지에 있던 <nav></nav> 태그 전부) -->
+    <section class="login-form">
+      <h1>관리 목록을 작성해주세요</h1>
+
+      <div class="container mt-3">
+        <!-- 폼 전송버튼을 누를 시 /add 라는 경로로 POST 요청을 하는 폼. -->
+        <!-- form 태그의 method 속성은 GET/POST 중 어떤 요청을 할 건지 정해주는 부분, action은 어떤 경로로 요청할건지를 정해주는 부분. -->
+        <!-- method, action을 채워넣으면 이제 전송버튼을 누를 때마다 서버에 input에 담긴 데이터들을 전송하게 된다.-->
+        <!-- input 마다 name 속성을 이용해 각각의 input에 이름을 써줄 것.-->
+        <!-- 폼 전송할 때 input에 이름이 없으면 서버에서 이게 어떤 input에 적혔던 데이터인지 알 수 없으므로.-->
+        <form action="/add" method="POST">
+          <div class="int-area">
+            <input type="text" name="title" autocomplete="off" required>
+            <label for="할일">할일</label>
+          </div>
+          <div class="int-area">
+            <input type="text" name="date" autocomplete="off" required>
+            <label>Due date</label>
+          </div><br>
+          <div class="btn-area">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label>날짜</label>
-        <input type="text" class="form-control" name="date">
-      </div>
-      <button type="submit" class="btn btn-outline-secondary">Submit</button>
-    </form>
-  </div>
+    </section>
 
-
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="/public/main.js" defer></script>
 </body>
+
 </html>
