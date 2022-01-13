@@ -1,5 +1,8 @@
         $('#hi').click(function(){
-            $('#hi').animate({ marginLeft:'100px', marginTop:'100px' });
+            $('#hi').animate({
+                marginLeft: '100px',
+                marginTop: '100px'
+            });
         })
 
         $('#email').on('change', function(){
