@@ -163,8 +163,10 @@
     display: block;
   }
 
-  .left-margin {
-    margin-left: 70%
+  .flex-between {
+    /* margin-left: 70%; */
+    display: flex;
+    justify-content: space-between;
   }
 
   .grey {
