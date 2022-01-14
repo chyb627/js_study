@@ -123,3 +123,10 @@ app.delete('/delete', function (요청, 응답) {
     })
     응답.send('삭제완료')
 });
+
+// /edit로 접속하면 edit.ejs 파일을 랜더링하고 보내준다.
+app.get('/edit/:id', function(요청, 응답){
+    db.collection('post').findOne({ _id : parseInt(요청.params.id) }, function(에러, 결과){
+        응답.render('edit.ejs', { post : 결과 })
+    })
+});
