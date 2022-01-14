@@ -186,6 +186,11 @@ app.post('/login', passport.authenticate('local', {
     응답.redirect('/')
 });
 
+// 로그인 실패시 다시 로그인 화면으로 넘겨줌
+app.get('/fail', function (요청, 응답) {
+    응답.render('login.ejs')
+  })
+
 
 // 아이디, 비번을 검사해주는 코드  
 passport.use(new LocalStrategy({
@@ -195,23 +200,16 @@ passport.use(new LocalStrategy({
     passReqToCallback: false,
 }, function (입력한아이디, 입력한비번, done) {
     //console.log(입력한아이디, 입력한비번);
-    db.collection('login').findOne({
-        id: 입력한아이디
-    }, function (에러, 결과) {
+    db.collection('login').findOne({ id: 입력한아이디 }, function (에러, 결과) {
         if (에러) return done(에러)
-
-        if (!결과) return done(null, false, {
-            message: '존재하지않는 아이디요'
-        })
+        if (!결과) return done(null, false, { message: '존재하지않는 아이디요' })
         if (입력한비번 == 결과.pw) {
-            return done(null, 결과)
+          return done(null, 결과)
         } else {
-            return done(null, false, {
-                message: '비번틀렸어요'
-            })
+          return done(null, false, { message: '비번틀렸어요' })
         }
-    })
-}));
+      })
+    }));
 
 // 세션데이터를 만들고 세션아이디를 보내주는 것 (serializeUser함수)
 passport.serializeUser(function (user, done) {
@@ -228,8 +226,9 @@ passport.deserializeUser(function (아이디, done) {
 });
 
 // 마이페이지 라우팅
-app.get('/mypage', function (요청, 응답) {
-    응답.render('mypage.ejs', {})
+app.get('/mypage', 로그인했니, function (요청, 응답) {
+    console.log('요청.user ::: ',요청.user);
+    응답.render('mypage.ejs', { 사용자: 요청.user })
 })
 // 로그인 확인, 요청.user가 있으면 next()로 통과시키고 없으면 에러메시지를 응답.send() 해줘
 // 요청.user는 deserializeUser가 보내준 그냥 로그인한 유저의 DB 데이터
@@ -237,6 +236,54 @@ function 로그인했니(요청, 응답, next) {
     if (요청.user) {
         next()
     } else {
-        응답.send('로그인해주세요')
+        // 응답.send('로그인해주세요')
+        응답.render('login.ejs')
+        alert('로그인 먼저 해주세요');
     }
 }
+
+// 회원가입 페이지 랜더링
+app.get('/signup', function (요청, 응답) {
+    응답.render('signup.ejs')
+  });
+
+// /user로 POST요청시 DB에 저장
+app.post('/user', function (요청, 응답) {
+db.collection('counter').findOne({
+    user: '회원수',
+}, function (에러, 결과) {
+
+    var 회원수 = 결과.totalUser;
+
+    db.collection('login').insertOne({
+        _id: 회원수 + 1,
+        id: 요청.body.id,
+        pw: 요청.body.pw
+    }, function (에러, 결과) {
+        db.collection('counter').updateOne({
+            user: '회원수'
+        }, {
+            $inc: {
+                totalUser: 1
+            }
+        }, function (에러, 결과) {
+            if (에러) {
+                return console.log(에러)
+            }
+            // 응답.send 부분은 항상 존재해야함. 전송이 성공하든 실패하든 서버에 보내주어야 안멈춘다.
+            응답.send('전송완료');
+        });
+    });
+
+});
+});
+
+// 회원가입 후 메인페이지로 이동
+app.get('/signup', function (요청, 응답) {
+    db.collection('login').find().toArray(function (에러, 결과) {
+        console.log(결과)
+        응답.render('main.ejs', {
+            posts: 결과
+        })
+    });
+});

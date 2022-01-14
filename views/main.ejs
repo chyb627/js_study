@@ -1,128 +1,123 @@
-<!doctype html>
-<html>
-
-<body>
   <!-- nav.html을 첨부해줘 ejs파일에서만가능 아니면 jquery써야함-->
   <%- include('nav.html') %>
 
-  <body>
 
-    <!-- 로그인 모달창 -->
-    <div class="black-background">
-      <div calss="white-background">
-        <p>로그인하세요</p>
+  <!-- 로그인 모달창 -->
+  <div class="black-background">
+    <div calss="white-background">
+      <p>로그인하세요</p>
 
-        <form>
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" id="email">
-            <p id="email-alert">이메일이 빈칸입니다</p>
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" id="password">
-            <p id="password-alert">이메일이 빈칸입니다</p>
-          </div>
-          <button type="submit" class="btn btn-primary">전송</button>
-        </form>
-
-        <a id="close" class="btn btn-danger">닫기</a>
-
-      </div>
-    </div>
-
-    <h4 class="my-4 text-center">Showcase</h4>
-
-    <div style="overflow: hidden; position: relative">
-      <div class="slide-container">
-        <div class="slide-box">
-          <img src="public/image/shirt1.jpeg">
+      <form>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Email" id="email">
+          <p id="email-alert">이메일이 빈칸입니다</p>
         </div>
-        <div class="slide-box">
-          <img src="public/image/shirt2.jpeg">
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" id="password">
+          <p id="password-alert">이메일이 빈칸입니다</p>
         </div>
-        <div class="slide-box">
-          <img src="public/image/shirt3.jpeg">
-        </div>
-      </div>
-      <button class="slide-right">Right</button>
-      <button class="slide-left">left</button>
-    </div>
+        <button type="submit" class="btn btn-primary">전송</button>
+      </form>
 
-
-    <div class="container">
-
-      <ul class="list">
-        <li class="tab-button" data-id="0">상품 상세설명</li>
-        <li class="tab-button active" data-id="1">사이즈 정보</li>
-        <li class="tab-button" data-id="2">후기</li>
-      </ul>
-
-      <div class="tab-content">
-        <p>상품 상세설명입니다. Product</p>
-      </div>
-      <div class="tab-content show">
-        <p>사이즈 정보입니다. Info</p>
-      </div>
-      <div class="tab-content">
-        <p>후기입니다. Shipping</p>
-      </div>
+      <a id="close" class="btn btn-danger">닫기</a>
 
     </div>
+  </div>
 
-    <form class="container my-5">
-      <div class="form-group">
+  <h4 class="my-4 text-center">Showcase</h4>
 
-        <p>상품선택</p>
-        <select class="form-control" id="option1">
-          <option>바지</option>
-          <option>셔츠</option>
-        </select>
+  <div style="overflow: hidden; position: relative">
+    <div class="slide-container">
+      <div class="slide-box">
+        <img src="public/image/shirt1.jpeg">
+      </div>
+      <div class="slide-box">
+        <img src="public/image/shirt2.jpeg">
+      </div>
+      <div class="slide-box">
+        <img src="public/image/shirt3.jpeg">
+      </div>
+    </div>
+    <button class="slide-right">Right</button>
+    <button class="slide-left">left</button>
+  </div>
 
-        <div class="size-select">
-          <p class="mt-4">사이즈선택</p>
-          <select class="form-control" id="option2">
-            <!-- <option>95</option>
+
+  <div class="container">
+
+    <ul class="list">
+      <li class="tab-button" data-id="0">상품 상세설명</li>
+      <li class="tab-button active" data-id="1">사이즈 정보</li>
+      <li class="tab-button" data-id="2">후기</li>
+    </ul>
+
+    <div class="tab-content">
+      <p>상품 상세설명입니다. Product</p>
+    </div>
+    <div class="tab-content show">
+      <p>사이즈 정보입니다. Info</p>
+    </div>
+    <div class="tab-content">
+      <p>후기입니다. Shipping</p>
+    </div>
+
+  </div>
+
+  <form class="container my-5">
+    <div class="form-group">
+
+      <p>상품선택</p>
+      <select class="form-control" id="option1">
+        <option>바지</option>
+        <option>셔츠</option>
+      </select>
+
+      <div class="size-select">
+        <p class="mt-4">사이즈선택</p>
+        <select class="form-control" id="option2">
+          <!-- <option>95</option>
               <option>100</option>
               <option>105</option> -->
-          </select>
-        </div>
+        </select>
+      </div>
 
-      </div>
-    </form>
+    </div>
+  </form>
 
-    <div class="card-group container">
-      <div class="card">
-        <img src="https://via.placeholder.com/600">
-        <div class="card-body">
-          <h5 class="title">Card title</h5>
-          <p class="price">가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600">
-        <div class="card-body">
-          <h5 class="title">Card title</h5>
-          <p class="price">가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600">
-        <div class="card-body">
-          <h5 class="title">Card title</h5>
-          <p class="price">가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
+  <div class="card-group container">
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5 class="title">Card title</h5>
+        <p class="price">가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
       </div>
     </div>
-
-    <div class="container my-4">
-      <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
-      <button class="btn btn-primary" id="abc">가나다순</button>
-      <button class="btn btn-primary" id="filter">6만원이하</button>
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5 class="title">Card title</h5>
+        <p class="price">가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
     </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5 class="title">Card title</h5>
+        <p class="price">가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+  </div>
 
-    <!-- <h4 id="hhello" style="margin: 40px;">AJAX 연습</h4>
+  <div class="container my-4">
+    <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
+    <button class="btn btn-primary" id="abc">가나다순</button>
+    <button class="btn btn-primary" id="filter">6만원이하</button>
+  </div>
+
+  <!-- <h4 id="hhello" style="margin: 40px;">AJAX 연습</h4>
       <button id="ajax" style="margin-left: 40px;" class="btn btn-danger">AJAX 버튼</button>
 
       <div>
@@ -134,15 +129,11 @@
 
       <button id="change" style="margin-left: 40px;" class="btn btn-danger">상품변경 버튼</button> -->
 
-    <div class="my-5"></div>
+  <div class="my-5"></div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
-    </script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
+  </script>
 
-    <script src="/public/main.js" defer></script>
-
-  </body>
-
-</html>
+  <script src="/public/main.js" defer></script>
