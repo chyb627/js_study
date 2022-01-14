@@ -277,13 +277,3 @@ db.collection('counter').findOne({
 
 });
 });
-
-// 회원가입 후 메인페이지로 이동
-app.get('/signup', function (요청, 응답) {
-    db.collection('login').find().toArray(function (에러, 결과) {
-        console.log(결과)
-        응답.render('main.ejs', {
-            posts: 결과
-        })
-    });
-});
