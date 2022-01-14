@@ -24,6 +24,7 @@
         </h4>
         <p> 할일 마감날짜 : <%= posts[i].날짜 %>
         </p>
+        <button class="btn btn-primary" data-id="<%= posts[i]._id %> "><a href="/edit/<%= posts[i]._id %>">수정하기</a></button>
         <button class="btn btn-danger delete" data-id="<%= posts[i]._id %> ">삭제</button>
       </li>
       <% } %>
@@ -79,7 +80,10 @@
         $(this).parent('li').fadeOut();
       })
     });
+
   </script>
+
+
 
   <script src="/public/list.js" defer></script>
 

@@ -18,7 +18,13 @@ app.set('view engine', 'ejs');
 // public 위치에 있는 폴더를 사용하겠다.
 app.use('/public', express.static('public'))
 
+// method-override (POST로 PUT, DELETE 요청을 할 수 있다)
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 
+//--------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------//
 
 
 let db; //페이지 전체에서 쓸 수 있는 전역변수
@@ -130,3 +136,11 @@ app.get('/edit/:id', function(요청, 응답){
         응답.render('edit.ejs', { post : 결과 })
     })
 });
+
+// 서버로 PUT 요청 들어오면 게시물 수정 처리하기
+app.put('/edit', function(요청, 응답){ 
+    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목 : 요청.body.title , 날짜 : 요청.body.date }}, function(에러, 결과){ 
+        console.log('수정완료') 
+        응답.redirect('/list') 
+    }); 
+}); 
