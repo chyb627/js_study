@@ -22,6 +22,19 @@ app.use('/public', express.static('public'))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// passport passport-local express-session, 대소문자 틀리면 코딩인생 끝날 수 있으니 구분할 것
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
+
+app.use(session({
+    secret: '비밀코드',
+    resave: true,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 //--------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------//
@@ -131,16 +144,96 @@ app.delete('/delete', function (요청, 응답) {
 });
 
 // /edit로 접속하면 edit.ejs 파일을 랜더링하고 보내준다.
-app.get('/edit/:id', function(요청, 응답){
-    db.collection('post').findOne({ _id : parseInt(요청.params.id) }, function(에러, 결과){
-        응답.render('edit.ejs', { post : 결과 })
+app.get('/edit/:id', function (요청, 응답) {
+    db.collection('post').findOne({
+        _id: parseInt(요청.params.id)
+    }, function (에러, 결과) {
+        응답.render('edit.ejs', {
+            post: 결과
+        })
     })
 });
 
 // 서버로 PUT 요청 들어오면 게시물 수정 처리하기
-app.put('/edit', function(요청, 응답){ 
-    db.collection('post').updateOne( {_id : parseInt(요청.body.id) }, {$set : { 제목 : 요청.body.title , 날짜 : 요청.body.date }}, function(에러, 결과){ 
-        console.log('수정완료') 
-        응답.redirect('/list') 
-    }); 
-}); 
+app.put('/edit', function (요청, 응답) {
+    db.collection('post').updateOne({
+        _id: parseInt(요청.body.id)
+    }, {
+        $set: {
+            제목: 요청.body.title,
+            날짜: 요청.body.date
+        }
+    }, function (에러, 결과) {
+        console.log('수정완료')
+        응답.redirect('/list')
+    });
+});
+
+// 로그인 화면
+app.get('/login', function (요청, 응답) {
+    응답.render('login.ejs')
+});
+
+// 로그인 시 아이디,비번이 맞는지 검사후 맞으면 홈으로 가줘
+// passport 라는 라이브러리가 제공하는 '아이디 비번 인증도와주는 코드'
+// failureRedirect라는 부분은 로그인 인증 실패시 이동시켜줄 경로
+app.post('/login', passport.authenticate('local', {
+    failureRedirect: '/fail'
+}), function (요청, 응답) {
+    응답.redirect('/')
+});
+
+
+// 아이디, 비번을 검사해주는 코드  
+passport.use(new LocalStrategy({
+    usernameField: 'id',
+    passwordField: 'pw',
+    session: true,
+    passReqToCallback: false,
+}, function (입력한아이디, 입력한비번, done) {
+    //console.log(입력한아이디, 입력한비번);
+    db.collection('login').findOne({
+        id: 입력한아이디
+    }, function (에러, 결과) {
+        if (에러) return done(에러)
+
+        if (!결과) return done(null, false, {
+            message: '존재하지않는 아이디요'
+        })
+        if (입력한비번 == 결과.pw) {
+            return done(null, 결과)
+        } else {
+            return done(null, false, {
+                message: '비번틀렸어요'
+            })
+        }
+    })
+}));
+
+// 세션데이터를 만들고 세션아이디를 보내주는 것 (serializeUser함수)
+passport.serializeUser(function (user, done) {
+    done(null, user.id)
+});
+
+// deserializeUser 라는 부분은 고객의 세션아이디를 바탕으로 이 유저의 정보를 DB에서 찾는 역할을 하는 함수
+passport.deserializeUser(function (아이디, done) {
+    db.collection('login').findOne({
+        id: 아이디
+    }, function (에러, 결과) {
+        done(null, 결과)
+    })
+});
+
+// 마이페이지 라우팅
+app.get('/mypage', function (요청, 응답) {
+    응답.render('mypage.ejs', {})
+})
+// 로그인 확인, 요청.user가 있으면 next()로 통과시키고 없으면 에러메시지를 응답.send() 해줘
+// 요청.user는 deserializeUser가 보내준 그냥 로그인한 유저의 DB 데이터
+function 로그인했니(요청, 응답, next) {
+    if (요청.user) {
+        next()
+    } else {
+        응답.send('로그인해주세요')
+    }
+}
