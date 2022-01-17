@@ -11,18 +11,18 @@
         <div class="container mt-4">
             <form action="/edit?_method=PUT" method="POST">
                 <div class="form-group">
-                    <label>할일</label>
+                    <label>할일 제목</label>
                     <!-- edit 페이지에서 전송버튼 누르면 input의 value들이 전부 폼으로 전송되는데, 함께 전송될 input을 하나 만들어 준 것 -->
                     <!-- 그 input에는 사용자가 수정요청하는 게시물의 _id를 적어주는 것 -->
                     <!-- 그럼 총 3개의 input 데이터가 서버로 전송된다 (제목,날짜,id) -->
                     <input type="text" value="<%= post._id %>" name="id" style="display : none">
                     <input value="<%= post.제목 %>" type="text" class="form-control" name="title">
                 </div>
-                <div class="form-group">
-                    <label>Due date</label>
+                <div class="form-group" style="margin-top:10px">
+                    <label>할일 마감날짜</label>
                     <input value="<%= post.날짜 %>" type="text" class="form-control" name="date">
                 </div>
-                <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                <button type="submit" class="btn btn-outline-secondary" style="margin-top:15px">수정하기</button>
             </form>
         </div>
 
