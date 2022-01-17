@@ -300,3 +300,8 @@ app.get('/search', (요청, 응답)=>{
         응답.render('search.ejs', {posts : 결과})
     })
 })
+
+// /upload 페이지 랜더링
+app.get('/upload', function(요청, 응답){
+    응답.render('upload.ejs')
+  }); 
