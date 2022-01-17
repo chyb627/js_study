@@ -304,4 +304,46 @@ app.get('/search', (요청, 응답)=>{
 // /upload 페이지 랜더링
 app.get('/upload', function(요청, 응답){
     응답.render('upload.ejs')
-  }); 
+}); 
+
+// multer 셋팅
+// diskStorage라는 함수를 쓰면 업로드된 파일을 하드에 저장할 수 있다. memoryStorage라고 쓰시면 하드 말고 램에 저장할 수 있다 (휘발성)
+// destination : 업로드된 파일을 하드 어떤 경로에 저장할지 정하는 부분
+// filename : 파일의 이름을 결정하는 부분. 저장할 때 어떤 이름으로 저장할건지. file.originalname이라고 쓰면 그냥 원본 그대로라는 뜻.
+// var upload라는 변수를 만들고 multer 셋팅을 다 저장해주면 끝!
+let multer = require('multer');
+var storage = multer.diskStorage({
+
+  destination : function(req, file, cb){
+    cb(null, './public/image')
+  },
+  filename : function(req, file, cb){
+    cb(null, file.originalname )
+  }
+
+});
+
+var upload = multer({storage : storage});
+
+// 업로드한 파일의 확장자 필터로 원하는 파일만 거르는 방법
+var path = require('path');
+
+var upload = multer({
+    storage: storage,
+    fileFilter: function (req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+            return callback(new Error('PNG, JPG만 업로드하세요'))
+        }
+        callback(null, true)
+    },
+    limits:{
+        fileSize: 1024 * 1024
+    }
+});
+
+// 누군가 폼으로 이미지를 전송할 때 실행
+app.post('/upload', upload.single('프로필'), function(요청, 응답){
+    응답.send('업로드완료')
+}); 
+
